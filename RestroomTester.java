@@ -10,5 +10,6 @@ public class RestroomTester
       wc.addOccupant();
       System.out.println(wc.getStalls());
       System.out.println("Expected: ___X__X_____");
+      System.out.println(wc.getStalls());
    }
 }

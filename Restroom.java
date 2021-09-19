@@ -1,4 +1,22 @@
 /**
+ *Title: Men in Restroom
+ *Semester: COP3337 –Fall 2021
+ *@author   Mariela Torres Zuniga
+ *
+ *  I affirm that this program is entirely my own work
+ *  and none of it is the work of any other person.
+ *
+ *This program will print out occupied
+ *stalls by men, however following the rule of
+ *occupying the middle of the longest
+ *sequence of unoccupied places. The program will print
+ *a diagram indicating this behavior by printing out
+ *an X on a line representing a stall.
+ */
+
+
+
+/**
    A class that shows how restroom stalls are occupied.
 */
 
@@ -17,46 +35,47 @@ private boolean[] s;
    }
 
    /*
-      Adds an occupant in the middle of the longest sequence of
-      unoccupied places. 
+      This method will add a person in the middle of the longest sequence of
+      empty stalls.
    */
    public void addOccupant()
    {
-       int lengthOfRun = 0;
-       int runStart = 0;
-       int maxRun = 0;
-       int maxRunStart = 0;
-       for (int i = 0; i < s.length + 1; i++)
+       int currentRun = 0;
+       int beginRun = 0;
+       int longestRun = 0;
+       int maxBeginRun = 0;
+
+       for (int i = 0; i < s.length+1 ; i++)
        {
            if (i == s.length)
            {
-               if (lengthOfRun > maxRun)
+               if (currentRun > longestRun)
                {
-                   maxRun = lengthOfRun;
-                   maxRunStart = runStart;
+                   longestRun = currentRun;
+                   maxBeginRun = beginRun;
                }
-           } else if (lengthOfRun == 0 && s[i] == false)
+           } else if (currentRun == 0 && s[i] ==   false)
            {
-               runStart = i;
-               lengthOfRun++;
+               beginRun = i;
+               currentRun++;
            } else
            {
                if (s[i] == false)
                {
-                   lengthOfRun++;
+                   currentRun++;
 
                } else
                {
-                   if (lengthOfRun > maxRun)
+                   if (currentRun > longestRun)
                    {
-                       maxRun = lengthOfRun;
-                       maxRunStart = runStart;
+                       longestRun = currentRun;
+                       maxBeginRun = beginRun;
                    }
-                   lengthOfRun = 0;
+                   currentRun = 0;
                }
            }
        }
-       s[maxRunStart + maxRun / 2] = true;
+       s[maxBeginRun + longestRun / 2] = true;
    }
 
    /*
@@ -65,10 +84,10 @@ private boolean[] s;
    */
    public String getStalls()
    {
-       String q = "";
-       for (boolean a : s)
-           q += a ? "X" : "_";
-       return q;
+       String x = "";
+       for (boolean y : s)
+           x += y ? "X" : "_";
+       return x;
 
 
 
